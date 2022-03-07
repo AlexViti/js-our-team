@@ -1,4 +1,8 @@
 const teamContainer = document.querySelector('.team-container');
+const inputName = document.getElementById('name');
+const inputRole = document.getElementById('role');
+const inputImg = document.getElementById('image');
+const btnAddMember = document.getElementById('addMemberButton');
 
 const members = [
 	{
@@ -32,6 +36,16 @@ members.forEach(element => {
 	cardCreator(element);
 });
 
+btnAddMember.addEventListener('click', ()=> addMember(inputName.value, inputRole.value, inputImg.value));
+
+function addMember(name, role, img) {
+	const member = {
+		name: name,
+		role: role,
+		img: img
+	}
+	cardCreator(member);
+}
 
 function imgSrcGenerator(member) {
 	const name = member.name.toLowerCase().replace(' ', '-');
