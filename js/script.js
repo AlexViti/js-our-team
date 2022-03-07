@@ -42,9 +42,11 @@ function addMember(name, role, img) {
 	const member = {
 		name: name,
 		role: role,
-		img: img
 	}
+	if (img.startsWith('img/')) member.img = img;
+	else member.img = 'img/' + img; 
 	cardCreator(member);
+	members.push(member);
 }
 
 function imgSrcGenerator(member) {
