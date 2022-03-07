@@ -9,23 +9,23 @@ const btnAddMember = document.getElementById('addMemberButton');
 const members = [
 	{
 		name: 'Wayne Barnett',
-		role: 'Founder & CEO',
+		role: 'Founder & CEO'
 	},
 	{
 		name: 'Angela Caroll',
-		role: 'Chief Editor',
+		role: 'Chief Editor'
 	},
 	{
 		name: 'Walter Gordon',
-		role: 'Office Manager',
+		role: 'Office Manager'
 	},
 	{
 		name: 'Angela Lopez',
-		role: 'Social Media Manager',
+		role: 'Social Media Manager'
 	},
 	{
 		name: 'Scott Estrada',
-		role: 'Developer',
+		role: 'Developer'
 	},
 	{
 		name: 'Barbara Ramos',
@@ -45,10 +45,12 @@ btnAddMember.addEventListener('click', ()=> addMember(inputName.value, inputRole
 function addMember(name, role, img) {
 	const member = {
 		name: name,
-		role: role,
+		role: role
 	}
-	if (img.startsWith('img/')) member.img = img;
-	else member.img = 'img/' + img; 
+	if (!img.startsWith('http')) {
+		if (img.startsWith('img/')) member.img = img;
+		else member.img = 'img/' + img; 
+	} else member.img = img;
 	cardCreator(member);
 	members.push(member);
 }
@@ -56,8 +58,7 @@ function addMember(name, role, img) {
 // Function that create a string with the path for the image of the default members
 function imgSrcGenerator(member) {
 	const name = member.name.toLowerCase().replace(' ', '-');
-	let role = member.role.toLowerCase().replace(/ & /g, '-');
-	role = role.replace(/\s/g, `-`);
+	let role = member.role.toLowerCase().replace(/ & /g, '-').replace(/\s/g, '-');
 	member.img = `img/${name}-${role}.jpg`;
 }
 
