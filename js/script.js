@@ -23,7 +23,7 @@ const members = [
 		name: 'Barbara Ramos',
 		role: 'Graphic Designer'
 	}
-]
+];
 
 function imgSrcGenerator(members) {
 	for (let i = 0; i < members.length; i++) {
@@ -35,3 +35,24 @@ function imgSrcGenerator(members) {
 }
 
 imgSrcGenerator(members);
+
+const teamContainer = document.querySelector('.team-container');
+
+for (let i = 0; i < members.length; i++) {
+	const teamCard = document.createElement('div');
+	teamContainer.append(teamCard);
+	teamCard.outerHTML = `
+	<div class="team-card">
+		<div class="card-image">
+		<img
+			src="${members[i].img}"
+			alt="${members[i].name}"
+		/>
+		</div>
+		<div class="card-text">
+		<h3>${members[i].name}</h3>
+		<p>${members[i].role}</p>
+		</div>
+ 	</div>
+	`;
+}
