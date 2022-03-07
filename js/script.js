@@ -1,3 +1,5 @@
+const teamContainer = document.querySelector('.team-container');
+
 const members = [
 	{
 		name: 'Wayne Barnett',
@@ -25,33 +27,33 @@ const members = [
 	}
 ];
 
-function imgSrcGenerator(members) {
-	for (let i = 0; i < members.length; i++) {
-		const name = members[i].name.toLowerCase().replace(' ', '-');
-		let role = members[i].role.toLowerCase().replace(/ & /g, '-');
-		role = role.replace(/\s/g, `-`);
-		members[i].img = `img/${name}-${role}.jpg`;
-	}
+members.forEach(element => {
+	imgSrcGenerator(element);
+	cardCreator(element);
+});
+
+
+function imgSrcGenerator(member) {
+	const name = member.name.toLowerCase().replace(' ', '-');
+	let role = member.role.toLowerCase().replace(/ & /g, '-');
+	role = role.replace(/\s/g, `-`);
+	member.img = `img/${name}-${role}.jpg`;
 }
 
-imgSrcGenerator(members);
-
-const teamContainer = document.querySelector('.team-container');
-
-for (let i = 0; i < members.length; i++) {
+function cardCreator(member) {
 	const teamCard = document.createElement('div');
 	teamContainer.append(teamCard);
 	teamCard.outerHTML = `
 	<div class="team-card">
 		<div class="card-image">
 		<img
-			src="${members[i].img}"
-			alt="${members[i].name}"
+			src="${member.img}"
+			alt="${member.name}"
 		/>
 		</div>
 		<div class="card-text">
-		<h3>${members[i].name}</h3>
-		<p>${members[i].role}</p>
+		<h3>${member.name}</h3>
+		<p>${member.role}</p>
 		</div>
  	</div>
 	`;
